@@ -26,7 +26,7 @@ class Match3 {
 	this.playerThree = playerThree;
         this.cardsPlayerOne = [playerOneRoundOne, playerOneRoundTwo, playerOneRoundThree, playerOneTotal];
         this.cardsPlayerTwo = [playerTwoRoundOne, playerTwoRoundTwo, playerTwoRoundThree,  playerTwoTotal];
-		this.cardsPlayerThree = [playerThreeRoundOne, playerThreeRoundTwo, playerOneRoundThree, playerThreeTotal];
+	this.cardsPlayerThree = [playerThreeRoundOne, playerThreeRoundTwo, playerOneRoundThree, playerThreeTotal];
         }
 }
 
