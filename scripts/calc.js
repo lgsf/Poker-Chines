@@ -23,7 +23,7 @@ class Match3 {
         this.winner = winner;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-		this.playerThree = playerThree;
+	this.playerThree = playerThree;
         this.cardsPlayerOne = [playerOneRoundOne, playerOneRoundTwo, playerOneRoundThree, playerOneTotal];
         this.cardsPlayerTwo = [playerTwoRoundOne, playerTwoRoundTwo, playerTwoRoundThree,  playerTwoTotal];
 		this.cardsPlayerThree = [playerThreeRoundOne, playerThreeRoundTwo, playerOneRoundThree, playerThreeTotal];
@@ -41,12 +41,12 @@ class Match4 {
         this.winner = winner;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-		this.playerThree = playerThree;
-		this.playerFour = playerFour;
+	this.playerThree = playerThree;
+	this.playerFour = playerFour;
         this.cardsPlayerOne = [playerOneRoundOne, playerOneRoundTwo, playerOneRoundThree, playerOneRoundFour, playerOneTotal];
         this.cardsPlayerTwo = [playerTwoRoundOne, playerTwoRoundTwo, playerTwoRoundThree, playerTwoRoundFour, playerTwoTotal];
-		this.cardsPlayerThree = [playerThreeRoundOne, playerThreeRoundTwo, playerThreeRoundThree, playerThreeRoundFour, playerThreeTotal];
-		this.cardsPlayerFour = [playerFourRoundOne, playerFourRoundTwo, playerFourRoundThree, playerFourRoundFour, playerFourTotal];
+	this.cardsPlayerThree = [playerThreeRoundOne, playerThreeRoundTwo, playerThreeRoundThree, playerThreeRoundFour, playerThreeTotal];
+	this.cardsPlayerFour = [playerFourRoundOne, playerFourRoundTwo, playerFourRoundThree, playerFourRoundFour, playerFourTotal];
         }
 }
 
@@ -89,19 +89,19 @@ function novapartida3() {
     var winner;
     var playerOne = toLowerCase(document.getElementById('three_player_three').value);
     var playerTwo = toLowerCase(document.getElementById('three_player_three').value);
-	var playerThree = toLowerCase(document.getElementById('three_player_three').value);
+    var playerThree = toLowerCase(document.getElementById('three_player_three').value);
     var playerOneRoundOne = parseInt(document.getElementById('three_player_one_round_one').value);
     var playerOneRoundTwo = parseInt(document.getElementById('three_player_one_round_two').value);
     var playerOneRoundThree = parseInt(document.getElementById('three_player_one_round_three').value);
     var playerTwoRoundOne = parseInt(document.getElementById('three_player_two_round_one').value);
     var playerTwoRoundTwo = parseInt(document.getElementById('three_player_two_round_two').value);
     var playerTwoRoundThree = parseInt(document.getElementById('three_player_two_round_three').value);
-	var playerThreeRoundOne = parseInt(document.getElementById('three_player_three_round_one').value);
+    var playerThreeRoundOne = parseInt(document.getElementById('three_player_three_round_one').value);
     var playerThreeRoundTwo = parseInt(document.getElementById('three_player_three_round_two').value);
     var playerThreeRoundThree = parseInt(document.getElementById('three_player_three_round_three').value);
     var playerOneTotal = playerOneRoundOne + playerOneRoundTwo + playerTwoRoundThree;
     var playerTwoTotal = playerTwoRoundOne + playerTwoRoundTwo + playerTwoRoundThree;
-	var playerThreeTotal = playerThreeRoundOne + playerThreeRoundTwo + playerThreeRoundThree;
+    var playerThreeTotal = playerThreeRoundOne + playerThreeRoundTwo + playerThreeRoundThree;
     
     if(playerOneTotal < playerTwoTotal && playerThreeTotal){
         winner = playerOne;
@@ -126,8 +126,8 @@ function novapartida4() {
     var winner;
     var playerOne = toLowerCase(document.getElementById('four_player_one').value);
     var playerTwo = toLowerCase(document.getElementById('four_player_two').value);
-	var playerThree = toLowerCase(document.getElementById('four_player_three').value);
-	var playerFour = toLowerCase(document.getElementById('four_player_four').value);
+    var playerThree = toLowerCase(document.getElementById('four_player_three').value);
+    var playerFour = toLowerCase(document.getElementById('four_player_four').value);
     var playerOneRoundOne = parseInt(document.getElementById('four_player_one_round_one').value);
     var playerOneRoundTwo = parseInt(document.getElementById('four_player_one_round_two').value);
     var playerOneRoundThree = parseInt(document.getElementById('four_player_one_round_three').value);
@@ -136,17 +136,17 @@ function novapartida4() {
     var playerTwoRoundTwo = parseInt(document.getElementById('four_player_two_round_two').value);
     var playerTwoRoundThree = parseInt(document.getElementById('four_player_two_round_three').value);
     var playerTwoRoundFour = parseInt(document.getElementById('four_player_two_round_four').value);
-	var playerThreeRoundOne = parseInt(document.getElementById('four_player_three_round_one').value);
+    var playerThreeRoundOne = parseInt(document.getElementById('four_player_three_round_one').value);
     var playerThreeRoundTwo = parseInt(document.getElementById('four_player_three_round_two').value);
     var playerThreeRoundThree = parseInt(document.getElementById('four_player_three_round_three').value);
     var playerThreeRoundFour = parseInt(document.getElementById('four_player_three_round_four').value);
-	var playerFourRoundOne = parseInt(document.getElementById('four_player_four_round_one').value);
+    var playerFourRoundOne = parseInt(document.getElementById('four_player_four_round_one').value);
     var playerFourRoundTwo = parseInt(document.getElementById('four_player_four_round_two').value);
     var playerFourRoundThree = parseInt(document.getElementById('four_player_four_round_three').value);
     var playerFourRoundFour = parseInt(document.getElementById('four_player_four_round_four').value);
     var playerOneTotal = playerOneRoundOne + playerOneRoundTwo + playerTwoRoundThree + playerTwoRoundFour;
     var playerTwoTotal = playerTwoRoundOne + playerTwoRoundTwo + playerTwoRoundThree + playerTwoRoundFour;
-	var playerThreeTotal = playerThreeRoundOne + playerThreeRoundTwo + playerThreeRoundThree + playerThreeRoundFour;
+    var playerThreeTotal = playerThreeRoundOne + playerThreeRoundTwo + playerThreeRoundThree + playerThreeRoundFour;
     var playerFourTotal = playerFourRoundOne + playerFourRoundTwo + playerFourRoundThree + playerFourRoundFour;
     
     if(playerOneTotal < playerTwoTotal && playerThreeTotal && playerFourTotal){
