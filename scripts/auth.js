@@ -1,6 +1,3 @@
-
-
-
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -33,6 +30,6 @@ loginForm.addEventListener('submit', (e) => {
     // Após logado, fecha o popup e limpa.
     const modal = document.querySelector('#modal-login');
     M.Modal.getInstance(modal).close();
-    LoginForm.reset();
+    loginForm.reset();
   });
 });
