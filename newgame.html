@@ -1,0 +1,561 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Banco de dados para Poker Chinês</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i&display=swap" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    
+    <style>
+      /* Estilo do elemento body */
+      body {
+        font-family: Arial;
+        padding: 10px;
+        background: #f1f1f1;
+           }
+      /* Header */
+      .header {
+        padding: 10px;
+        background: #f1f1f1;
+        color: #b1b1b1;
+        padding-bottom: 5px;
+            }
+      .header p {
+        font-size: 15px;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: right;
+            }
+      
+      .desc {
+        font-size: 18px !important;
+        font-family: 'Molle', cursive;
+      }
+      
+    </style>
+</head>
+<body class="logged-in">
+    <div class="container">
+    <div class="header">
+          <a href="index.html"><img src="images/logo.png" alt="Banco de dados de Poker Chinês"></a>
+          <p>Bem vindo ao site para armazenar suas partidas 2x2, 3x3 e 4x4.</p>
+      </div>
+    </div>  
+  
+      <nav class="nav-wrapper container grey lighten-1"> 
+        <a href="#" class="sidenav-trigger" data-target="mobile-links">
+            <i class="material-icons">menu</i>
+          </a>
+        <ul class="hide-on-med-and-down">
+          <li class="logged-in" style="display:none;"><a href="" class="modal-trigger" data-target="modal-account">Minha conta</a></li>
+          <li class="logged-in" style="display:none;"><a href="newgame.html">Registar nova partida</a></li>
+          <li class="logged-in" style="display:none;"><a href="#">Histórico de partidas</a></li>
+          <li class="logged-out" style="display:none;"><a href="" class="modal-trigger" data-target="modal-login">Login</a></li>
+          <li class="logged-out" style="display:none;"><a href="" class="modal-trigger" data-target="modal-signup">Registrar</a></li>
+          <li class="logged-in" style="display:none;"><a href="" id="logout">Logout</a></li>
+          <li class="logged-in" style="display:none;"><a href="" class="modal-trigger" data-target="modal-info">Sobre</a></li>
+        </ul>
+      </nav>
+  
+    <ul class="sidenav grey lighten-2" id="mobile-links">
+      <li class="logged-in" style="display:none;"><a href="" class="modal-trigger" data-target="modal-account">Minha conta</a></li>
+      <li class="logged-in" style="display:none;"><a href="newgame.html">Registar nova partida</a></li>
+      <li class="logged-in" style="display:none;"><a href="#">Histórico de partidas</a></li>
+      <li class="logged-out" style="display:none;"><a href="" class="modal-trigger" data-target="modal-login">Login</a></li>
+      <li class="logged-out" style="display:none;"><a href="" class="modal-trigger" data-target="modal-signup">Registrar</a></li>
+      <li class="logged-in" style="display:none;"><a href="" id="logout">Logout</a></li>
+      <li class="logged-in" style="display:none;"><a href="" class="modal-trigger" data-target="modal-info">Sobre</a></li>
+    </ul>
+  
+      <!-- MODAL registro -->
+      <div id="modal-signup" class="modal">
+        <div class="modal-content grey lighten-2">
+          <h4>Registre-se</h4><br />
+          <form id="signup-form">
+            <div class="input-field">
+              <input type="email" id="signup-email" required />
+              <label for="signup-email">E-mail</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="signup-password" required />
+              <label for="signup-password">Escolha sua senha</label>
+            </div>
+            <div class="center-align"><button class="btn grey lighten-1">Registrar</button></div>
+          </form>
+        </div>
+      </div>
+    
+      <!-- MODAL login -->
+      <div id="modal-login" class="modal">
+        <div class="modal-content grey lighten-2">
+          <h4>Login</h4><br />
+          <form id="login-form">
+            <div class="input-field">
+              <input type="email" id="login-email" required />
+              <label for="login-email">E-mail</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="login-password" required />
+              <label for="login-password">Digite sua senha</label>
+            </div>
+            <div class="center-align"><button class="btn grey lighten-1">Login</button></div>
+          </form>
+        </div>
+      </div>
+    
+      <!-- MODAL da conta -->
+      <div id="modal-account" class="modal">
+        <div class="modal-content center-align grey lighten-2">
+          <h4>Detalhes da sua conta</h4><br />
+          <div class="account-details"></div>
+        </div>
+      </div>
+
+      <!-- MODAL de info sobre a página-->
+      <div id="modal-info" class="modal">
+        <div class="modal-content grey lighten-2">
+          <h4 class="center-align">Informações</h4><br>
+          <p>O poker Chinês é um jogo de cartas não muito conhecido. 
+            Apesar de usar as mãos do Poker tradicional, o Poker Chinês é um jogo com uma dinâmica diferente.
+          <p>Dois, três ou quatro jogadores podem jogar. Cada jogador recebe mãos de 13 cartas. 
+            O intuito é que o jogador descarte todas suas cartas primeiro, vencendo assim a rodada. 
+            Após um número de rodadas, uma partida é contabilizada e um campeão é coroado. </p>
+            <p>O problema nasce aí: a cada rodada é necessário que o número de cartas de cada jogador seja contabilizada.
+              Com o número de rodadas crescente, esse processo se torna cansativo.
+            </p>
+            <p>Surgiu assim um dia a ideia de automatizar tal processo com a criação de uma página que seria usada para contabilizar tais pardidas.
+            Outro problema foi resolvido por consequência, agora seria possível manter o histórico das partidas.</p>
+            <p>As informações de contato do criador da página se encontram abaixo:</p>
+            <div class="row">
+              <div class="col s6 offset-s3">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="images/img4.jpg" alt="">
+                    <button type="button" class="halfway-fab btn-floating pink pulse">
+                      <i class="material-icons">favorite</i>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title">Contato</span>
+                    <p>Luiz Gustavo é aluno de Engenharia de Controle e Automação da UFMG. 
+                      Amante do Poker Chinês, é o criador desta página.</p>
+                  </div>
+                  <div class="card-action">
+                    <a href="mailto:lgsf@outlook.com">Email</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+<br><br>
+<div id="parag">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card grey lighten-3 hoverable" onclick="partida2()">
+          <div class="card-image">
+            <img src="images/img1.jpg" alt="Jogo para 2 pessoas">
+          </div>
+          <div class="card-content">
+            <span class="card-title desc center-align">Partida de 2 jogadores</span>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card grey lighten-3 hoverable" onclick="partida3()">
+          <div class="card-image">
+            <img src="images/img2.jpg" alt="Jogo para 3 pessoas">
+          </div>
+          <div class="card-content">
+            <span class="card-title desc center-align">Partida de 3 jogadores</span>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card grey lighten-3 hoverable" onclick="partida4()">
+          <div class="card-image">
+            <img src="images/img3.jpg" alt="Jogo para 4 pessoas">
+          </div>
+          <div class="card-content">
+            <span class="card-title desc center-align">Partida de 4 jogadores</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ <div id="parag1" style="display:none;">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card grey lighten-3">
+          <div class="card-content">
+            <form id="two_player">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Apelido do jogador 1" id="two_player_one" type="text" class="validate">
+                <label for="two_player_one">Jogador 1:</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Apelido do jogador 2" id="two_player_two" type="text" class="validate">
+                <label for="two_player_two">Jogador 2:</label>
+              </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 1ª rodada" id="two_player_one_round_one" type="number" min="0" max="13" class="validate">
+              <label for="two_player_one_round_one">Rodada 1:</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 1ª rodada" id="two_player_two_round_one" type="number" min="0" max="13" class="validate">
+              <label for="two_player_two_round_one">Rodada 1:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 2ª rodada" id="two_player_one_round_two" type="number" min="0" max="13" class="validate">
+              <label for="two_player_one_round_two">Rodada 2:</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 2ª rodada" id="two_player_two_round_two" type="number" min="0" max="13" class="validate">
+              <label for="two_player_two_round_two">Rodada 2:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 3ª rodada" id="two_player_one_round_three" type="number" min="0" max="13" class="validate">
+              <label for="two_player_one_round_three">Rodada 3:</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 3ª rodada" id="two_player_two_round_three" type="number" min="0" max="13" class="validate">
+              <label for="two_player_two_round_three">Rodada 3:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 4ª rodada" id="two_player_one_round_four" type="number" min="0" max="13" class="validate">
+              <label for="two_player_one_round_four">Rodada 4:</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Número de cartas da 4ª rodada" id="two_player_two_round_four" type="number" min="0" max="13" class="validate">
+              <label for="two_player_two_round_four">Rodada 4:</label>
+            </div>
+          </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" class="datepicker" id="date1">
+                <label for="date1">Qual a data da partida?</label>
+              </div>
+            </div>
+          <div class="center-align">
+          <div class="row">
+            <div class="input-field">
+              <input type="button" onclick="novapartida2()" class="btn grey lighten-1" value="Enviar">
+            </div>
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+<div id="parag2" style="display:none;">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card grey lighten-3">
+          <div class="card-content">
+            <form id="three_player">
+            <div class="row">
+              <div class="input-field col s4">
+                <input placeholder="Apelido do jogador 1" id="three_player_one" type="text" class="validate">
+                <label for="first_name">Jogador 1:</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="Apelido do jogador 2" id="three_player_two" type="text" class="validate">
+                <label for="player_two">Jogador 2:</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="Apelido do jogador 3" id="three_player_three" type="text" class="validate">
+                <label for="player_three">Jogador 3:</label>
+              </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 1ª rodada" id="three_player_one_round_one" type="number" min="0" max="13" class="validate">
+              <label for="player_one_round_one">Rodada 1:</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 1ª rodada" id="three_player_two_round_one" type="number" min="0" max="13" class="validate">
+              <label for="player_two_round_one">Rodada 1:</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 1ª rodada" id="three_player_three_round_one" type="number" min="0" max="13" class="validate">
+              <label for="player_three_round_one">Rodada 1:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 2ª rodada" id="three_player_one_round_two" type="number" min="0" max="13" class="validate">
+              <label for="player_one_round_two">Rodada 2:</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 2ª rodada" id="three_player_two_round_two" type="number" min="0" max="13" class="validate">
+              <label for="player_two_round_two">Rodada 2:</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 2ª rodada" id="three_player_three_round_two" type="number" min="0" max="13" class="validate">
+              <label for="player_three_round_two">Rodada 2:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 3ª rodada" id="three_player_one_round_three" type="number" min="0" max="13" class="validate">
+              <label for="player_one_round_three">Rodada 3:</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 3ª rodada" id="three_player_two_round_three" type="number" min="0" max="13" class="validate">
+              <label for="player_two_round_three">Rodada 3:</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Número de cartas da 3ª rodada" id="three_player_three_round_three" type="number" min="0" max="13" class="validate">
+              <label for="player_three_round_three">Rodada 3:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" class="datepicker" id="date2">
+              <label for="date2">Qual a data da partida?</label>
+            </div>
+          </div>
+          <div class="center-align">
+          <div class="row">
+            <div class="input-field">
+              <input type="button" onclick="novapartida3()" class="btn grey lighten-1" value="Enviar">
+            </div>
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+<div id="parag3" style="display:none;">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card grey lighten-3">
+          <div class="card-content">
+            <form id="four_player">
+            <div class="row">
+              <div class="input-field col s3">
+                <input placeholder="Apelido do jogador 1" id="four_player_one" type="text" class="validate">
+                <label for="player_one">Jogador 1:</label>
+              </div>
+              <div class="input-field col s3">
+                <input placeholder="Apelido do jogador 2" id="four_player_two" type="text" class="validate">
+                <label for="player_two">Jogador 2:</label>
+              </div>
+              <div class="input-field col s3">
+                <input placeholder="Apelido do jogador 3" id="four_player_three" type="text" class="validate">
+                <label for="player_three">Jogador 3:</label>
+              </div>
+              <div class="input-field col s3">
+                <input placeholder="Apelido do jogador 4" id="four_player_four" type="text" class="validate">
+                <label for="player_four">Jogador 4:</label>
+              </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 1ª rodada" id="four_player_one_round_one" type="number" min="0" max="13" class="validate">
+              <label for="player_one_round_one">Rodada 1:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 1ª rodada" id="four_player_two_round_one" type="number" min="0" max="13" class="validate">
+              <label for="player_two_round_one">Rodada 1:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 1ª rodada" id="four_player_three_round_one" type="number" min="0" max="13" class="validate">
+              <label for="player_three_round_one">Rodada 1:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 1ª rodada" id="four_player_four_round_one" type="number" min="0" max="13" class="validate">
+              <label for="player_four_round_one">Rodada 1:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 2ª rodada" id="four_player_one_round_two" type="number" min="0" max="13" class="validate">
+              <label for="player_one_round_two">Rodada 2:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 2ª rodada" id="four_player_two_round_two" type="number" min="0" max="13" class="validate">
+              <label for="player_two_round_two">Rodada 2:</label>
+            </div>
+              <div class="input-field col s3">
+                <input placeholder="Número de cartas da 2ª rodada" id="four_player_three_round_two" type="number" min="0" max="13" class="validate">
+                <label for="player_three_round_two">Rodada 2:</label>
+              </div>
+              <div class="input-field col s3">
+                <input placeholder="Número de cartas da 2ª rodada" id="four_player_four_round_two" type="number" min="0" max="13" class="validate">
+                <label for="player_four_round_two">Rodada 2:</label>
+              </div>
+            </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 3ª rodada" id="four_player_one_round_three" type="number" min="0" max="13" class="validate">
+              <label for="player_one_round_three">Rodada 3:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 3ª rodada" id="four_player_two_round_three" type="number" min="0" max="13" class="validate">
+              <label for="player_two_round_three">Rodada 3:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 3ª rodada" id="four_player_three_round_three" type="number" min="0" max="13" class="validate">
+              <label for="player_three_round_three">Rodada 3:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 3ª rodada" id="four_player_four_round_three" type="number" min="0" max="13" class="validate">
+              <label for="player_four_round_three">Rodada 3:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 4ª rodada" id="four_player_one_round_four" type="number" min="0" max="13" class="validate">
+              <label for="player_one_round_four">Rodada 4:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 4ª rodada" id="four_player_two_round_four" type="number" min="0" max="13" class="validate">
+              <label for="player_two_round_four">Rodada 4:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 4ª rodada" id="four_player_three_round_four" type="number" min="0" max="13" class="validate">
+              <label for="player_three_round_four">Rodada 4:</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Número de cartas da 4ª rodada" id="four_player_four_round_four" type="number" min="0" max="13" class="validate">
+              <label for="player_four_round_four">Rodada 4:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" class="datepicker" id="date3">
+              <label for="date3">Qual a data da partida?</label>
+            </div>
+          </div>
+          <div class="center-align">
+          <div class="row">
+            <div class="input-field">
+              <input type="button" onclick="novapartida4()" class="btn grey lighten-1" value="Enviar">
+            </div>
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+<br><br><br>
+<div class="container">
+<footer style="position:fixed;bottom:0;left:0;width:100%;margin-top:20px;">
+  <div class="container center-align z-depth-3">
+  <div class="footer-copyright grey lighten-1 white-text"><br>
+    &copy; 2020 Chinese Poker Database. Todos os direitos reservados.<br><br>
+  </div>
+</div>
+</footer>
+</div>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
+
+  <script>
+  // Configuração do servidor Firebase
+    var firebaseConfig = {
+      apiKey: "AIzaSyAyGzCVnhXuiuZ4__ex-8boLR6OkjLN4HM",
+      authDomain: "chinese-poker-database.firebaseapp.com",
+      databaseURL: "https://chinese-poker-database.firebaseio.com",
+      projectId: "chinese-poker-database",
+      storageBucket: "chinese-poker-database.appspot.com",
+      messagingSenderId: "193008182461",
+      appId: "1:193008182461:web:99a615e20cc01a9d7f83d4",
+      measurementId: "G-64K5YEDELM"
+    };
+  // Inicializando o Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+  </script>
+<!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/calc.js"></script>
+
+<!-- Inicialização da barra lateral -->
+  <script>
+    $(document).ready(function(){
+    $('.sidenav').sidenav();
+   });
+  </script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+          var today = new Date().toLocaleDateString();
+          var options = {
+              defaultDate: new Date(today),
+              setDefaultDate: true
+          };
+          var elems = document.querySelectorAll('.datepicker');
+          var instance = M.Datepicker.init(elems, options);
+          instance.setDate(new Date(today));
+    });
+  </script>
+
+<!-- Script para mostrar e ocultar elementos de acordo com tipo de partida selecionado  -->
+  <script>
+    function partida2() {
+      document.getElementById("parag").style.display="none";
+      document.getElementById("parag1").style.display="block";
+          }
+
+    function partida3() {
+      document.getElementById("parag").style.display="none";
+      document.getElementById("parag2").style.display="block";
+    }
+
+    function partida4() {
+      document.getElementById("parag").style.display="none";
+      document.getElementById("parag3").style.display="block";
+   }
+  </script>
+</body>
+</html>
