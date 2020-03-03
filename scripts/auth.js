@@ -1,12 +1,4 @@
-auth.onAuthStateChanged(user => {
-  if (user) {
-    db.collection('guides').get().then(snapshot => {
-      setupUI(user);
-    });
-  } else {
-    setupUI();
-  }
-})
+
 
 
 const signupForm = document.querySelector('#signup-form');
